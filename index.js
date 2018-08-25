@@ -19,19 +19,13 @@ require("babel-register")({
         "react-html-attrs",
         "jsx-control-statements",
         "transform-runtime",
-        "transform-decorators-legacy",
-        "react-hot-loader/babel"
+        "transform-decorators-legacy"
     ]
 });
 
 require('css-modules-require-hook')({
     extensions: ['.less'],
-    preprocessCss: (data, filename) =>
-        require('node-less').renderSync({
-            data,
-            file: filename
-        }).css,
-    camelCase: true,
+    processorOpts: { parser: require('postcss-less').parse },
     generateScopedName: '[name]__[local]__[hash:base64:8]'
 })
 
@@ -40,4 +34,4 @@ require('asset-require-hook')({
     extensions: ['jpg', 'png', 'gif', 'webp'],
     limit: 1024
 })
-require("./server/server");
+require("./server/server.js");

@@ -1,4 +1,2 @@
-node_modules/**
-build/**
-mock/**
-dist/**
+node_modules/
+dist/

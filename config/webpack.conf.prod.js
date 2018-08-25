@@ -1,32 +1,62 @@
-const webpack = require('webpack');
 const path = require("path");
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const merge = require('webpack-merge');
 const webpackBaseConfig = require('./webpack.conf.base');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); 
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-const config = merge(webpackBaseConfig, {
+module.exports = merge(webpackBaseConfig, {
     output: {
-        path: path.join(__dirname, "../dist/client"),
+        path: path.join(__dirname, "../dist"),
         publicPath: '/',
-        filename: '[name]-[chunkhash].js',
-        // chunkFilename: '[name].[chunkhash].js'
+        filename: 'js/[name]-[chunkhash:8].js',
+        chunkFilename: 'js/[name].[chunkhash].js'
+    },
+    mode: 'production',
+    module: {
+        rules: [
+            {
+                test: /\.less$/,
+                use: [ MiniCssExtractPlugin.loader, 'css-loader', 'less-loader' ]
+            }
+        ]
+    },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendor',
+                    chunks: 'initial',
+                    enforce: true,
+                    priority: 10
+                }
+            }
+        },
+        minimizer: [
+            new UglifyJsPlugin({
+                cache: true,
+                parallel: true,
+                uglifyOptions: {
+                    compress: {
+                        warnings: false,
+                        drop_debugger: true,
+                        drop_console: false
+                    }
+                }
+            }),
+            new OptimizeCSSAssetsPlugin({})
+        ]
     },
     plugins: [
-        new webpack.DefinePlugin({
-            'BUILD_ENV': JSON.stringify('prod'),
+        new MiniCssExtractPlugin({
+            filename: 'css/[name].[chunkhash:8].css'
         }),
-        new ExtractTextPlugin('css/[name]-[contenthash:8].css'),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: ['vendor'],
-            filename: '[name]-[chunkhash].js'
-        }),
-        new webpack.optimize.ModuleConcatenationPlugin(),
-        new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
+        new HtmlWebpackPlugin({
+            template: path.join(__dirname, '../client/index.html'),
+            title: '$Title'
         }),
         new FriendlyErrorsPlugin()
     ],
@@ -34,5 +64,3 @@ const config = merge(webpackBaseConfig, {
         fs: 'empty'
     }
 });
-
-module.exports = config;

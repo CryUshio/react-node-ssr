@@ -1,10 +1,8 @@
 const path = require("path");
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-        client: path.resolve(__dirname, '../app/entry.js'),
+        entry: path.resolve(__dirname, '../client/entry.js'),
         vendor: [
             'react', 'react-dom', 'redux', 'redux-actions', 
             'react-redux', 'react-router', 'react-router-dom'
@@ -13,13 +11,10 @@ module.exports = {
     output: {
         publicPath: '/',
         filename: "js/[name].js",
-        chunkFilename: '[name].[chunkhash].js'
+        chunkFilename: 'js/[name].[chunkhash].js'
     },
     resolve: {
-        extensions: ['.js', '.jsx'],
-        alias: {
-            '@': path.resolve(__dirname, '../app'), 
-        },
+        extensions: ['.js', '.jsx']
     },
     module: {
         rules: [{
@@ -32,7 +27,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 1024,
-                    name: 'client/i/[name].[hash:8].[ext]'
+                    name: 'i/[name].[hash:8].[ext]'
                 }
             },
             {
@@ -40,19 +35,13 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 1024,
-                    name: 'client/i/[name].[hash:8].[ext]'
+                    name: 'i/[name].[hash:8].[ext]'
                 }
-            }, 
-            {
-                test: /\.less$/,
-                loader: ExtractTextPlugin.extract(['css-loader', 'less-loader'])
-            },
+            }
         ]
     },
-    plugins: [
-        new ExtractTextPlugin('css/[name].css'),
-        new HtmlWebpackPlugin({
-            template: path.join(__dirname, '../app/index.html'),
-        })
-    ]
+    performance: {
+        hints: false
+    },
+    plugins: []
 }

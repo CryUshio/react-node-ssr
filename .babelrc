@@ -19,7 +19,6 @@
         "react-html-attrs",
         "jsx-control-statements",
         "transform-runtime",
-        "transform-decorators-legacy",
-        "react-hot-loader/babel"
+        "transform-decorators-legacy"
     ]
 }

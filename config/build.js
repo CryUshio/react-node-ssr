@@ -4,14 +4,11 @@ const path = require('path');
 const chalk = require('chalk');
 const webpack = require('webpack');
 
-const webpackConfig = process.env.BUILD_ENV === 'prod'
-    ? require('./webpack.conf.prod')
-    : require('./webpack.conf.server');
-const rmFileName = process.env.BUILD_ENV === 'prod' ? '../dist' : '../dist/*server.*';
+const webpackConfig = require('./webpack.conf.prod');
 const spinner = ora('building for production...');
 spinner.start();
 
-rm(path.join(__dirname, rmFileName), (err) => {
+rm(path.join(__dirname, '../dist'), (err) => {
     if (err) {
         throw err;
     }
