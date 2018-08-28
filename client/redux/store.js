@@ -1,11 +1,11 @@
 import { createStore, applyMiddleware } from 'redux';
 import combineReducers from './reducer';
-import thunk from 'redux-thunk';
+import thunk from 'redux-thunk'; // 转换为单参数柯里化函数
 
-function logger(store) {
+function logger(store) { //  传入store对象
     return (next) => (action) => {
         console.log('log action:\n', action);
-        next(action);  // next = dispatch
+        next(action);  // next middleware
     };
 }
 

@@ -56,6 +56,7 @@ module.exports = merge(webpackBaseConfig, {
         }),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, '../client/index.html'),
+            favicon: path.resolve(__dirname, '../client/static/favicon.ico'),
             title: '$Title'
         }),
         new FriendlyErrorsPlugin()

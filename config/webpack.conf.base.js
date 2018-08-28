@@ -14,16 +14,23 @@ module.exports = {
         chunkFilename: 'js/[name].[chunkhash].js'
     },
     resolve: {
-        extensions: ['.js', '.jsx']
+        extensions: ['.js', '.jsx'],
+        alias: {
+            '@': path.resolve(__dirname, '../client')
+        }
     },
     module: {
         rules: [{
                 test: /\.(jsx|js)$/,
                 exclude: /node_modules/,
-                loader: "babel-loader"
+                // loader: "babel-loader"
+                use: {
+                    loader: 'babel-loader',
+                    options: require(path.resolve(__dirname, '../babelrc'))('client')
+                }
             },
             {
-                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                test: /\.(png|jpe?g|gif|svg|ico)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {
                     limit: 1024,

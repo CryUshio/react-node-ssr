@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "node ./server/server.dev.js",
     "build": "node config/build.js",
-    "start": "nodemon index.js"
+    "build:server": "cross-env BUILD_ENV=server node config/build.js",
+    "build:all": "sh ./build-prod.sh",
+    "start": "nodemon index.js",
+    "http_server": "nodemon ./server/http-server.js"
   },
   "repository": {
     "type": "git",
@@ -27,8 +30,7 @@
     "babel-runtime": "^6.26.0",
     "immer": "^1.3.1",
     "lodash": "^4.17.5",
-    "mongodb": "^3.1.3",
-    "mongoose": "^5.2.9",
+    "mysql": "^2.16.0",
     "prop-types": "^15.6.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
@@ -48,6 +50,7 @@
     "babel-plugin-react-html-attrs": "^2.0.0",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
@@ -65,10 +68,11 @@
     "eslint-plugin-react": "^7.4.0",
     "express": "^4.15.4",
     "express-generator": "^4.16.0",
-    "file-loader": "^0.11.2",
+    "file-loader": "^1.1.11",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "fs": "0.0.1-security",
     "html-webpack-plugin": "^3.2.0",
+    "ignore-loader": "^0.1.2",
     "jsx-control-statements": "^3.2.8",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",

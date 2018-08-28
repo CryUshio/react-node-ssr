@@ -9,12 +9,13 @@ import App from './page/App';
 import './static/css/index.less';
 
 const renderer = process.env.NODE_ENV === 'development' ? render : hydrate;
+const Router = process.env.NODE_ENV === 'development' ? HashRouter : BrowserRouter;
 
 renderer(
     <Provider store={createStore(window.__INITIAL_STATE__)}>
-        <BrowserRouter>
+        <Router>
             <App />
-        </BrowserRouter>
+        </Router>
     </Provider>,
     document.querySelector('#app')
 );

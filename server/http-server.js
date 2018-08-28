@@ -1,12 +1,12 @@
-import express from 'express';
-import path from 'path';
-import bodyParser from 'body-parser';
-import compression from 'compression';
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
+const compression = require('compression');
 
 // import render from './render';
-import { render } from '../dist/server.bundle';
-import { cleanCache } from './util';
-import Database from '../model/db';
+const { render } = require('../dist/server.bundle');
+const { cleanCache } = require('./util');
+const Database = require('../model/db');
 
 const app = express();
 const port = process.env.port || 8888;
@@ -44,11 +44,6 @@ app.get(/^[^\.]+$/, (req, res) => {
         res.end('404 Not found.');
     }
     return;
-
-
-
-    // console.log(await database.find('tag', {}));
-    
 });
 app.use(express.static(path.join(__dirname, '../dist')));
 

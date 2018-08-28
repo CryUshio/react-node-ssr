@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect, Switch, withRouter } from 'react-router-dom';
-import loadable from '../lib/loadable';
 import { Button } from 'antd';
 import Home from './Home';
 import About from './About';
@@ -27,7 +26,7 @@ export default class App extends Component {
                 <Switch>
                     <Redirect from='/' to='/index' strict exact />
                     <Route path="/index" component={Home} />
-                    <Route path="/about" component={loadable(() => import('./About'))} />
+                    <Route path="/about" component={About} />
                 </Switch>
                 <div><Button type="primary" onClick={() => this.handleClick()}>2333</Button></div>
                 

@@ -3,7 +3,8 @@ import { handleActions } from 'redux-actions';
 import actionTypes from './action-types';
 
 const _initialState = {
-    url: ''
+    url: '',
+    tagList: []
 };
 
 export default (initialState = {}) => handleActions(
