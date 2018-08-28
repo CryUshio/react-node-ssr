@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Button } from 'antd';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as commonActions from '@/redux/common/action';
-import autobind from 'autobind-decorator';
 
 @connect(
     null,

@@ -4,7 +4,7 @@ import actionTypes from './action-types';
 
 const _initialState = {
     articalList: [],
-    articalDetail: {},
+    articalDetail: {}
 };
 
 export default (initialState = {}) => handleActions(

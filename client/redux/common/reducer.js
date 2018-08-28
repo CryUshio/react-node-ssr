@@ -11,7 +11,7 @@ export default (initialState = {}) => handleActions(
     {
         [actionTypes.PUT_URL]: produce((draft, { payload }) => {
             draft.url = payload;
-        }),
+        })
     }, 
     { ..._initialState, ...initialState }
 );   

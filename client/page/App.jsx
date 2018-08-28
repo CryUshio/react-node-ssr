@@ -18,6 +18,7 @@ export default class App extends Component {
     }
 
     render() {
+        // eslint-disable-next-line
         console.log(this.props.state);
         return (
             <div>
@@ -35,6 +36,7 @@ export default class App extends Component {
     }
 
     handleClick() {
+        // eslint-disable-next-line
         console.log('click');
     }
 }
