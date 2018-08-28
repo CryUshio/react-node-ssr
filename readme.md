@@ -1,8 +1,8 @@
 This is a test program of react-node-ssr
 
 #### Overview
-Now it can surport `redux` and `react router`.
-As well as package both client and server.
+Now it can surport `redux` and `react router`,
+as well as packaging and compressing both client and server to `dist`.
 
 #### Use
 ```
