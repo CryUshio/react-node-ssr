@@ -8,8 +8,7 @@
     "build": "node config/build.js",
     "build:server": "cross-env BUILD_ENV=server node config/build.js",
     "build:all": "sh ./build-prod.sh",
-    "start": "nodemon index.js",
-    "http_server": "nodemon ./server/http-server.js"
+    "start": "nodemon ./server/http-server.js"
   },
   "repository": {
     "type": "git",
