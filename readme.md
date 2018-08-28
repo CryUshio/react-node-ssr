@@ -8,5 +8,5 @@ As well as package both client and server.
 ```
 npm i
 npm run build:all
-npm run http-server
+npm start
 ```
