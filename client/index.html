@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= htmlWebpackPlugin.options.title %></title>
-    <script>
-        window.__INITIAL_STATE__ = '$initialState';
-    </script>
 </head>
 <body>
+    <script id='redux'>window.__INITIAL_STATE__ = '$initialState'</script>
     <div id="app">$Content</div>
 </body>
 </html>

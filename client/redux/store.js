@@ -11,5 +11,6 @@ function logger(store) { //  传入store对象
 
 export default (initialState = {}) => {
     const store = createStore(combineReducers(initialState), applyMiddleware(thunk, logger));
+    if (typeof window !== 'undefined') document.querySelector('#redux').remove();
     return store;
 };
